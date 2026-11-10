@@ -1,0 +1,152 @@
+{
+  "recorded_at": "2026-11-06T00:06:42.348953+02:00",
+  "comparison": "One warm complete playback per app, same fixed Arabic text and saved voice settings; no answer generation or microphone in this comparison. Audio sampling was not fixed in these UI runs.",
+  "previous": {
+    "start": 13661.89999999106,
+    "clips": [
+      {
+        "started": 23538.70000000298,
+        "duration": 4.48,
+        "ended": 28132.39999999106
+      },
+      {
+        "started": 34265.29999999702,
+        "duration": 5.2,
+        "ended": 39523.5
+      },
+      {
+        "started": 43104.5,
+        "duration": 4.16,
+        "ended": 47310.59999999404
+      }
+    ],
+    "errors": [],
+    "first_audio_seconds": 9.87680000001192,
+    "finish_seconds": 33.64870000000298,
+    "longest_gap_seconds": 6.132900000005961,
+    "expected_text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات. احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية. اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+    "physical_microphone": false,
+    "answer_generation_included": false,
+    "real_playback": true,
+    "app": "EMS",
+    "selected_model": "gpt-oss:20b",
+    "voice": "builtin"
+  },
+  "updated": {
+    "start": 21203.60000000894,
+    "clips": [
+      {
+        "started": 26220.5,
+        "duration": 4.8,
+        "ended": 31141.29999999702
+      },
+      {
+        "started": 31145,
+        "duration": 4.64,
+        "ended": 35855.70000000298
+      },
+      {
+        "started": 35858.29999999702,
+        "duration": 4.56,
+        "ended": 40485.5
+      }
+    ],
+    "errors": [],
+    "first_audio_seconds": 5.016899999991059,
+    "finish_seconds": 19.281899999991058,
+    "longest_gap_seconds": 0.003700000002980232,
+    "expected_text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات. احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية. اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+    "physical_microphone": false,
+    "answer_generation_included": false,
+    "real_playback": true,
+    "app": "EMS",
+    "selected_model": "gpt-oss:20b",
+    "voice": "builtin"
+  },
+  "acoustic_check": {
+    "physical_microphone": true,
+    "source": "Public synthetic Arabic fixture played through system output into the real microphone",
+    "selected_model": "gpt-oss:20b",
+    "voice": "builtin",
+    "ok": true,
+    "tracks": [
+      {
+        "label": "Default - MacBook Pro Microphone (Built-in)",
+        "sample_rate": 48000
+      }
+    ],
+    "events": [
+      {
+        "type": "done",
+        "content": "أكيد، خلينا نحدد أولوياتك: ما أهم ثلاث مهام اليوم؟ ثم نرتبها حسب الأهمية والوقت المتاح.",
+        "at": 29532.09999999404,
+        "meta": {
+          "mode": "offline",
+          "model": "gpt-oss:20b",
+          "sources": [],
+          "document_context": false,
+          "first_token_seconds": 0.5594904169993242,
+          "total_seconds": 1.173878292000154
+        }
+      }
+    ],
+    "playback": [
+      {
+        "first_audio_ms": 6009.79999999702,
+        "finish_ms": 13519,
+        "largest_gap_ms": 4.100000008940697,
+        "clips": 2,
+        "completed": true,
+        "starts_at": "transcript_ready",
+        "at": 37057.40000000596
+      }
+    ],
+    "clips": [
+      {
+        "started": 29548,
+        "ended": 33887.09999999404
+      },
+      {
+        "started": 33891.20000000298,
+        "ended": 37057.20000000298
+      }
+    ],
+    "max_rms": 0.41234200885733896,
+    "source_started": 15065.70000000298,
+    "source_finished": 24301,
+    "all_tracks_ended": true,
+    "conversation": [
+      {
+        "id": 1,
+        "chat_id": "1079f7a5e4be4a039b8352b916af0809",
+        "role": "user",
+        "content": "ممكن تساعدني أرتب شغلي النهاردة؟ رد بجملة قصيرة",
+        "meta": {},
+        "created": 1793916246.345016
+      },
+      {
+        "id": 2,
+        "chat_id": "1079f7a5e4be4a039b8352b916af0809",
+        "role": "assistant",
+        "content": "أكيد، خلينا نحدد أولوياتك: ما أهم ثلاث مهام اليوم؟ ثم نرتبها حسب الأهمية والوقت المتاح.",
+        "meta": {
+          "mode": "offline",
+          "model": "gpt-oss:20b",
+          "sources": [],
+          "document_context": false,
+          "first_token_seconds": 0.5594904169993242,
+          "total_seconds": 1.173878292000154
+        },
+        "created": 1793916247.517756
+      }
+    ],
+    "synthetic_capture_stream": false,
+    "synthetic_spoken_fixture": true
+  },
+  "finish_reduction_percent": 42.7,
+  "limitations": [
+    "One acoustic fixture is not a general transcription accuracy score.",
+    "No native-listener pronunciation acceptance or noisy-room evaluation.",
+    "Live online latency was not tested."
+  ]
+}

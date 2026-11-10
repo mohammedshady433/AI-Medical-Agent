@@ -1,0 +1,15 @@
+# Isolated speech environment. Never merge these into the packaged backend environment.
+torch==2.6.0
+torchaudio==2.6.0
+transformers==4.57.3
+huggingface-hub==0.36.2
+faster-whisper==1.2.1
+av==16.1.0
+kokoro==0.9.4
+misaki==0.9.4
+espeakng-loader==0.2.4
+num2words==0.5.14
+soundfile==0.13.1
+numpy==1.26.4
+pywin32==310; sys_platform == 'win32'
+httpx==0.28.1

@@ -1,0 +1,7 @@
+# Managed recognition / Windows English environment; no legacy Arabic voice packages.
+torch==2.6.0
+faster-whisper==1.2.1
+av==16.1.0
+numpy==1.26.4
+pywin32==310; sys_platform == 'win32'
+httpx==0.28.1

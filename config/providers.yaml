@@ -1,0 +1,18 @@
+ollama_cloud:
+  name: Ollama Cloud
+  adapter: ollama
+  endpoint: https://ollama.com
+  mode: online
+  secret_env: OLLAMA_API_KEY
+ollama_local:
+  name: Ollama Local
+  adapter: ollama
+  endpoint: http://127.0.0.1:11434
+  mode: offline
+  secret_env: ''
+compatible:
+  name: OpenAI-compatible
+  adapter: openai_compatible
+  endpoint: https://api.openai.com/v1
+  mode: online
+  secret_env: COMPATIBLE_API_KEY

@@ -1,0 +1,27 @@
+asr:
+  engine: faster_whisper
+  model: large-v3-turbo
+  device: cpu
+  compute_type: int8
+  beam_size: 3
+  max_seconds: 120
+tts:
+  provider: chatterbox
+  voice: egyptian
+  device: cpu
+  speed: 1.0
+  volume: 0.85
+  azure_region: eastus
+  azure_voice_ar: ar-EG-SalmaNeural
+  azure_voice_en: en-US-JennyNeural
+  auto_speak: true
+  prewarm: true
+  chatterbox_version: v3
+runtime:
+  python: ''
+  tts_python: ''
+  chatterbox_path: ''
+  whisper_path: ''
+  kemetone_path: ''
+  espeak_library: ''
+  espeak_data: ''

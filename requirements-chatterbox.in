@@ -1,0 +1,14 @@
+# A separate environment from Faster Whisper/KemeTone. Do not mix Transformer major versions.
+torch==2.6.0
+torchaudio==2.6.0
+# The PyPI 0.1.7 build predates the V3 inference correction, despite sharing its version number.
+chatterbox-tts @ https://github.com/resemble-ai/chatterbox/archive/5de7a54aa4e5e2baadb0182dde554908b48b85c2.zip#sha256=bb7363a76c0c0432a0305681fe2e533bbfb0f10fcf7b98d75a439d9a909f1576
+transformers==5.2.0
+huggingface-hub==1.32.0
+numpy==1.26.4
+safetensors==0.5.3
+librosa==0.11.0
+diffusers==0.29.0
+conformer==0.3.2
+num2words==0.5.14
+soundfile==0.13.1

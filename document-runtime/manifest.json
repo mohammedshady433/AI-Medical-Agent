@@ -1,0 +1,6 @@
+{
+  "tika": "3.3.2",
+  "url": "https://downloads.apache.org/tika/3.3.2/tika-app-3.3.2.jar",
+  "sha512": "88c2032cba0d45feea361e6eebd2918bd04707614cdda5d89a1b167da5503c98e7b4cd368336f0402d559abcaf5006fcc7c825c32c749ae0417ea2f3b8423aba",
+  "runtime": "Microsoft OpenJDK 17.0.19.10; jlink java.se,jdk.unsupported,jdk.charsets,jdk.zipfs,jdk.crypto.ec"
+}

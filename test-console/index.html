@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMS Test Console</title>
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --text: #1b2330; --muted: #5b687a; --line: #dce1e7;
+  --accent: #1f6feb; --accent-ink: #ffffff; --user: #e7effd; --soft: #f0f2f5;
+  --ok: #1a7f37; --warn: #9a6700; --err: #c62a33; --rec: #d1242f;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1217; --panel: #161b22; --text: #e6edf3; --muted: #8d99a8; --line: #29313b;
+    --accent: #4c8dff; --accent-ink: #0b0f14; --user: #1b2940; --soft: #1d232c;
+    --ok: #3fb950; --warn: #d29922; --err: #f85149; --rec: #ff5a5f;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header h1 { font-size: 16px; margin: 0; font-weight: 650; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.chip.ok { color: var(--ok); } .chip.bad { color: var(--err); } .chip.warn { color: var(--warn); }
+main { max-width: 1400px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+.settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px 12px; align-items: end; }
+label.field { display: grid; gap: 4px; font-size: 12px; color: var(--muted); }
+select, input[type=text], input[type=password], textarea {
+  font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; width: 100%;
+}
+textarea { resize: vertical; min-height: 44px; }
+button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button.danger { color: var(--err); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; min-width: 0; }
+.panel h2 { font-size: 14px; margin: 0 0 10px; font-weight: 650; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.panel h2 .spacer { flex: 1; }
+.grid2 { display: grid; gap: 16px; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 980px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row.grow > :first-child { flex: 1; min-width: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+#log { height: 52vh; min-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 4px 2px 8px; }
+.msg { max-width: 92%; padding: 9px 12px; border-radius: 12px; background: var(--soft); white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.user { align-self: flex-end; background: var(--user); }
+.msg .body.streaming { color: var(--muted); }
+.msg .tag { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
+.msg .meta { font-size: 11px; color: var(--muted); margin-top: 6px; white-space: normal; }
+.msg .status { font-size: 12px; color: var(--warn); white-space: normal; }
+.msg .error { color: var(--err); white-space: normal; }
+.msg details { margin-top: 6px; font-size: 12px; white-space: normal; }
+.msg details li { margin: 4px 0; }
+.msg details .src { display: block; color: var(--muted); white-space: pre-wrap; max-height: 7.5em; overflow: auto; }
+.empty { margin: auto; color: var(--muted); text-align: center; padding: 20px; }
+.voice-stage { display: grid; justify-items: center; gap: 10px; padding: 8px 0 4px; }
+#mic { width: 104px; height: 104px; border-radius: 50%; font-size: 13px; font-weight: 650; border: 2px solid var(--line); display: grid; place-items: center; text-align: center; padding: 8px; transition: transform .08s; }
+#mic.listening { border-color: var(--rec); color: var(--rec); box-shadow: 0 0 0 calc(var(--lvl, 0) * 22px) color-mix(in srgb, var(--rec) 22%, transparent); }
+#mic.busy { border-color: var(--accent); color: var(--accent); }
+#phase { font-weight: 600; min-height: 1.5em; text-align: center; }
+#transcript { min-height: 2.6em; padding: 8px 10px; border-radius: 8px; background: var(--soft); white-space: pre-wrap; width: 100%; }
+table.timing { width: 100%; border-collapse: collapse; font-size: 12px; }
+table.timing td { padding: 4px 6px; border-top: 1px solid var(--line); }
+table.timing td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+pre.json { background: var(--soft); border-radius: 8px; padding: 10px; overflow: auto; max-height: 340px; font-size: 12px; margin: 8px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.docs li { margin: 6px 0; }
+.notice { padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, var(--err) 12%, var(--panel)); color: var(--err); display: none; }
+.notice.show { display: block; }
+.approval { margin-top: 6px; padding: 8px; border: 1px dashed var(--warn); border-radius: 8px; white-space: normal; }
+details > summary { cursor: pointer; }
+.check { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; }
+#tokenGate { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>EMS AI core · test console</h1>
+  <div class="chips" id="chips"><span class="chip">Connecting…</span></div>
+</header>
+<main>
+  <div class="panel" id="tokenGate">
+    <h2>Session token needed</h2>
+    <p class="muted small">Start the backend with <code>scripts/test_console.py</code>, then open the link it prints. It already contains the token. Or paste the token here.</p>
+    <div class="row grow"><input type="password" id="tokenInput" placeholder="Session token"><button class="primary" id="tokenSave">Connect</button></div>
+  </div>
+
+  <div class="notice" id="notice" role="alert"></div>
+
+  <section class="panel">
+    <div class="settings">
+      <label class="field">Typed chat runs
+        <select id="setMode"><option value="offline">Offline (local Ollama)</option><option value="online">Online (cloud provider)</option></select>
+      </label>
+      <label class="field">Answer language
+        <select id="setLanguage"><option value="ar">Arabic</option><option value="en">English</option></select>
+      </label>
+      <label class="field">Voice turns run
+        <select id="setVoiceMode"><option value="offline">Offline</option><option value="online">Online</option></select>
+      </label>
+      <label class="field">Arabic voice
+        <select id="setVoice"><option value="builtin">Standard Arabic</option><option value="egyptian">Egyptian</option></select>
+      </label>
+      <label class="field">Recognition language
+        <select id="asrLanguage"><option value="">Same as answer language</option><option value="ar">Arabic</option><option value="en">English</option><option value="auto">Auto-detect</option></select>
+      </label>
+      <div class="row"><button id="refresh">Refresh status</button></div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>Chat
+        <span class="spacer"></span>
+        <select id="chatSelect" aria-label="Conversation" style="width:auto;max-width:260px"></select>
+        <button id="newChat">New chat</button>
+      </h2>
+      <div id="log" aria-live="polite"><div class="empty">Ask a question to test the answer engine.<br>Voice turns appear here too.</div></div>
+      <div class="row grow" style="margin-top:10px">
+        <textarea id="input" dir="auto" rows="2" placeholder="Type a question. Enter sends, Shift+Enter adds a line."></textarea>
+        <div class="row" style="flex-direction:column;align-items:stretch">
+          <button class="primary" id="send">Send</button>
+          <button class="danger" id="stop" disabled>Stop</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <label class="check"><input type="checkbox" id="asVoice"> Send as a voice turn (spoken style + speech)</label>
+        <label class="check"><input type="checkbox" id="readAloud"> Read typed answers aloud</label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Voice
+        <span class="spacer"></span>
+        <button id="prepare" title="Load the answer model, Whisper and Chatterbox before the first turn">Prepare voice</button>
+        <button class="danger" id="end">End</button>
+      </h2>
+      <div class="voice-stage">
+        <button id="mic" aria-label="Start listening">Start<br>talking</button>
+        <div id="phase" aria-live="polite">Idle</div>
+      </div>
+      <div class="row" style="justify-content:center;margin-bottom:8px">
+        <label class="check"><input type="checkbox" id="autoStop" checked> Stop after a pause</label>
+        <label class="check"><input type="checkbox" id="continuous" checked> Keep listening after each reply</label>
+        <label class="check"><input type="checkbox" id="speakReplies" checked> Speak replies</label>
+      </div>
+      <div class="small muted">Recognized text</div>
+      <div id="transcript" dir="auto" class="muted">—</div>
+      <table class="timing" style="margin-top:10px" aria-label="Last voice turn timing"><tbody id="timing"></tbody></table>
+      <details style="margin-top:12px">
+        <summary>Test speech only (text → voice)</summary>
+        <div class="row grow" style="margin-top:8px">
+          <textarea id="ttsText" dir="auto" rows="2" placeholder="مرحبا، أنا EMS. السعر 450 جنيه."></textarea>
+          <button id="ttsSpeak">Speak</button>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <section class="panel">
+    <details id="setupPanel">
+      <summary><strong>Setup &amp; keys</strong> <span class="muted small">Model downloads, online API key, connection tests</span></summary>
+      <div class="settings" style="margin-top:10px">
+        <label class="field">Online provider API key
+          <input type="password" id="apiKey" autocomplete="off" placeholder="Paste key (stored encrypted, never shown again)">
+        </label>
+        <div class="row"><button id="saveKey">Save key</button><button id="testOnline">Test online</button><button id="testOffline">Test offline</button></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="installAssistant" title="GPT-OSS 20B, Qwen 7B and BGE-M3 embeddings">Install offline models</button>
+        <button id="installVoice" title="Whisper recognition and Chatterbox Arabic voice">Install voice</button>
+        <button id="repair">Check &amp; repair</button>
+        <button class="danger" id="cancelSetup">Cancel setup</button>
+      </div>
+      <div class="small muted" id="setupState" style="margin-top:8px" aria-live="polite"></div>
+    </details>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary><strong>Documents</strong> <span class="muted small">Add files to test answers with [D…] citations</span></summary>
+      <div class="row" style="margin-top:10px">
+        <input type="file" id="docFiles" multiple>
+        <button id="docUpload">Upload</button>
+        <span class="small muted" id="docHint"></span>
+      </div>
+      <ul class="docs" id="docList"></ul>
+    </details>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary><strong>Raw stream events</strong> <span class="muted small">Every NDJSON event from /chat (audio shortened)</span></summary>
+      <div class="row" style="margin-top:8px"><button id="clearEvents">Clear</button></div>
+      <pre class="json" id="events"></pre>
+    </details>
+    <details style="margin-top:10px">
+      <summary><strong>Backend status</strong> <span class="muted small">Setup, speech readiness, hardware</span></summary>
+      <pre class="json" id="statusJson">Press "Refresh status".</pre>
+    </details>
+  </section>
+</main>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const state = {
+  token: "", cfg: null, chatId: "", busy: false, aborter: null, chatPromise: null,
+  gen: Date.now(), speechBarrier: Promise.resolve(), audio: null,
+  mic: null, recording: false, chunks: [], heard: false, lastVoice: 0, recStart: 0,
+  phase: "idle", conversation: false, turnId: 0, events: [],
+};
+
+/* ---------- token + HTTP ---------- */
+function loadToken() {
+  const match = location.hash.match(/token=([a-f0-9]{16,})/i);
+  if (match) {
+    state.token = match[1];
+    try { sessionStorage.setItem("ems-token", state.token); } catch {}
+    history.replaceState(null, "", location.pathname);
+  } else {
+    try { state.token = sessionStorage.getItem("ems-token") || ""; } catch {}
+  }
+}
+function errorText(data, status) {
+  if (data && typeof data.message === "string") return data.message;
+  if (data && typeof data.detail === "string") return data.detail;
+  if (data && Array.isArray(data.detail)) return data.detail.map((d) => d.msg).join("; ");
+  return "Request failed (HTTP " + status + ").";
+}
+async function readResponse(res) {
+  const text = await res.text();
+  let data = {};
+  try { data = text ? JSON.parse(text) : {}; } catch { data = { message: text.slice(0, 300) }; }
+  if (res.status === 401) showToken(true);
+  if (!res.ok) throw new Error(errorText(data, res.status));
+  return data;
+}
+function headers(json) {
+  const h = { Authorization: "Bearer " + state.token };
+  if (json) h["Content-Type"] = "application/json";
+  return h;
+}
+async function api(method, path, body) {
+  const res = await fetch(path, {
+    method, headers: headers(body !== undefined),
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+  return readResponse(res);
+}
+async function uploadFile(path, blob, name) {
+  const form = new FormData();
+  form.append("file", blob, name);
+  return readResponse(await fetch(path, { method: "POST", headers: headers(false), body: form }));
+}
+function notify(message) {
+  const n = $("notice");
+  n.textContent = message || "";
+  n.classList.toggle("show", !!message);
+}
+function showToken(show) { $("tokenGate").style.display = show ? "block" : "none"; }
+
+/* ---------- status + settings ---------- */
+function chip(text, cls) { const s = document.createElement("span"); s.className = "chip " + (cls || ""); s.textContent = text; return s; }
+async function refreshStatus(full) {
+  const chips = $("chips");
+  try {
+    const [health, settings] = await Promise.all([api("GET", "/health"), api("GET", "/settings")]);
+    state.cfg = settings.config;
+    applySettings();
+    const lang = state.cfg.language;
+    const voice = await api("GET", "/speech/status?conversation=true&language=" + lang);
+    const m = state.cfg.models;
+    chips.replaceChildren(
+      chip("Backend v" + health.version, "ok"),
+      chip("Offline model: " + m.offline.id),
+      chip("Online model: " + m.online.id + (settings.credentials[m.online.provider] ? "" : " (no key)"), settings.credentials[m.online.provider] ? "" : "warn"),
+      chip("Recognition " + (voice.recognition ? "ready" : "not installed"), voice.recognition ? "ok" : "bad"),
+      chip("Speech (" + voice.provider + ") " + (voice.synthesis ? "ready" : "not ready"), voice.synthesis ? "ok" : "bad"),
+    );
+    chips.title = "Data folder: " + health.data_dir;
+    showToken(false);
+    if (full) {
+      const [setup, diagnostics, models] = await Promise.all([
+        api("GET", "/setup/status").catch((e) => ({ error: e.message })),
+        api("GET", "/diagnostics").catch((e) => ({ error: e.message })),
+        api("GET", "/local/models/status").catch((e) => ({ error: e.message })),
+      ]);
+      $("statusJson").textContent = JSON.stringify({ health, speech: voice, setup, local_models: models, diagnostics }, null, 2);
+    }
+    return true;
+  } catch (e) {
+    chips.replaceChildren(chip("Not connected: " + e.message, "bad"));
+    if (!state.token) showToken(true);
+    return false;
+  }
+}
+function applySettings() {
+  const c = state.cfg;
+  $("setMode").value = c.mode;
+  $("setLanguage").value = c.language;
+  $("setVoiceMode").value = c.assistant.voice_mode || "offline";
+  $("setVoice").value = c.speech.tts.voice === "egyptian" ? "egyptian" : "builtin";
+}
+async function patchSettings(patch) {
+  notify("");
+  try {
+    await api("PATCH", "/settings", patch);
+  } catch (e) {
+    notify(e.message);
+  }
+  await refreshStatus(false);
+}
+$("setMode").onchange = (e) => patchSettings({ mode: e.target.value });
+$("setLanguage").onchange = (e) => patchSettings({ language: e.target.value });
+$("setVoiceMode").onchange = (e) => patchSettings({ assistant: { voice_mode: e.target.value } });
+$("setVoice").onchange = (e) => patchSettings({ speech: { tts: { voice: e.target.value } } });
+$("refresh").onclick = () => refreshStatus(true);
+
+/* ---------- chats ---------- */
+async function refreshChats() {
+  try {
+    const chats = await api("GET", "/chats");
+    const select = $("chatSelect");
+    select.replaceChildren(new Option("— conversations —", ""));
+    for (const c of chats.slice(0, 50)) select.add(new Option(c.title.slice(0, 60), c.id));
+    select.value = state.chatId || "";
+  } catch {}
+}
+$("chatSelect").onchange = async (e) => {
+  if (state.busy) { e.target.value = state.chatId; return; }
+  stopSpeech();
+  state.chatId = e.target.value;
+  const log = $("log");
+  log.replaceChildren();
+  if (!state.chatId) { log.innerHTML = '<div class="empty">New conversation.</div>'; return; }
+  for (const m of await api("GET", "/chats/" + state.chatId)) {
+    const b = addMessage(m.role, m.content, { voice: false });
+    if (m.role === "assistant") b.finish(m.content, m.meta);
+  }
+};
+$("newChat").onclick = () => {
+  if (state.busy) return;
+  stopSpeech();
+  state.chatId = "";
+  $("chatSelect").value = "";
+  $("log").innerHTML = '<div class="empty">New conversation.</div>';
+};
+
+/* ---------- message rendering ---------- */
+function addMessage(role, text, opts = {}) {
+  const log = $("log");
+  log.querySelector(".empty")?.remove();
+  const el = document.createElement("div");
+  el.className = "msg " + (role === "user" ? "user" : "assistant");
+  el.dir = "auto";
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = (role === "user" ? "You" : "EMS") + (opts.voice ? " · voice" : "");
+  const body = document.createElement("div");
+  body.className = "body";
+  body.textContent = text;
+  el.append(tag, body);
+  log.append(el);
+  log.scrollTop = log.scrollHeight;
+  let draft = "";
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  return {
+    el,
+    token(t) { draft += t; body.textContent = draft; body.classList.add("streaming"); scroll(); },
+    status(label) {
+      draft = ""; body.textContent = ""; // planning text is not the answer
+      const s = document.createElement("div"); s.className = "status"; s.textContent = label; el.insertBefore(s, body); scroll();
+    },
+    finish(content, meta) {
+      body.classList.remove("streaming");
+      body.textContent = content;
+      if (meta && Object.keys(meta).length) {
+        const parts = [meta.model, meta.mode];
+        if (typeof meta.first_token_seconds === "number") parts.push("first token " + meta.first_token_seconds.toFixed(2) + " s");
+        if (typeof meta.total_seconds === "number") parts.push("total " + meta.total_seconds.toFixed(2) + " s");
+        if (meta.voice_fact_check) parts.push("timing check: " + meta.voice_fact_check);
+        if (meta.interrupted) parts.push("interrupted");
+        const m = document.createElement("div"); m.className = "meta"; m.textContent = parts.filter(Boolean).join(" · "); el.append(m);
+        if (meta.sources?.length) {
+          const d = document.createElement("details");
+          const s = document.createElement("summary"); s.textContent = "Sources (" + meta.sources.length + ")"; d.append(s);
+          const ul = document.createElement("ul");
+          for (const src of meta.sources) {
+            const li = document.createElement("li");
+            li.textContent = src.reference + " " + src.name + " — " + src.location;
+            const t = document.createElement("span"); t.className = "src"; t.textContent = src.text; li.append(t); ul.append(li);
+          }
+          d.append(ul); el.append(d);
+        }
+      }
+      scroll();
+    },
+    error(message) { body.classList.remove("streaming"); const e = document.createElement("div"); e.className = "error"; e.textContent = message; el.append(e); scroll(); },
+    approval(a) {
+      const box = document.createElement("div"); box.className = "approval";
+      box.textContent = "Tool approval needed: " + a.label + " " + JSON.stringify(a.arguments || {}) + " ";
+      for (const [label, approve] of [["Approve", true], ["Deny", false]]) {
+        const b = document.createElement("button"); b.textContent = label;
+        b.onclick = async () => { box.querySelectorAll("button").forEach((x) => (x.disabled = true)); try { await api("POST", "/mcp/confirm", { id: a.id, approve }); } catch (e) { notify(e.message); } };
+        box.append(b);
+      }
+      el.append(box); scroll();
+    },
+  };
+}
+function logEvent(event) {
+  const copy = JSON.parse(JSON.stringify(event));
+  if (copy.voice_audio?.audio) copy.voice_audio.audio = "<" + copy.voice_audio.audio.length + " base64 chars>";
+  state.events.push(JSON.stringify(copy));
+  if (state.events.length > 300) state.events.shift();
+  $("events").textContent = state.events.join("\n");
+}
+$("clearEvents").onclick = () => { state.events = []; $("events").textContent = ""; };
+
+/* ---------- one chat turn (typed or voice) ---------- */
+function setBusy(busy) {
+  state.busy = busy;
+  $("send").disabled = busy;
+  $("stop").disabled = !busy && !state.audio;
+}
+async function sendTurn(text, voice) {
+  if (state.busy) return null;
+  notify("");
+  setBusy(true);
+  let done = null;
+  const run = (async () => {
+    try {
+      if (!state.chatId) { state.chatId = (await api("POST", "/chats")).id; }
+      addMessage("user", text, { voice });
+      const bubble = addMessage("assistant", "", { voice });
+      state.aborter = new AbortController();
+      const res = await fetch("/chat", {
+        method: "POST", headers: headers(true), signal: state.aborter.signal,
+        body: JSON.stringify({ chat_id: state.chatId, text, voice }),
+      });
+      if (!res.ok) { try { await readResponse(res); } catch (e) { bubble.error(e.message); } return; }
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      const handle = (line) => {
+        if (!line.trim()) return;
+        const event = JSON.parse(line);
+        logEvent(event);
+        if (event.type === "token") bubble.token(event.text);
+        else if (event.type === "status") bubble.status(event.tool === "verify_voice_facts" ? "Checking the spoken timing facts…" : "Using tool: " + event.tool + " (step " + (event.step ?? "") + ")");
+        else if (event.type === "approval") bubble.approval(event.approval);
+        else if (event.type === "done") { bubble.finish(event.content, event.meta); done = event; }
+        else if (event.type === "cancelled") bubble.error("Stopped.");
+        else if (event.type === "error") bubble.error(event.message + (event.kind ? " [" + event.kind + "]" : "") + (event.suggest_offline ? " — try Offline." : ""));
+      };
+      for (;;) {
+        const { value, done: finished } = await reader.read();
+        if (finished) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop();
+        lines.forEach(handle);
+      }
+      handle(buffer + decoder.decode());
+    } catch (e) {
+      if (e.name !== "AbortError") notify(e.message);
+    } finally {
+      state.aborter = null;
+      setBusy(false);
+      refreshChats();
+    }
+  })();
+  state.chatPromise = run;
+  await run;
+  return done;
+}
+async function cancelTurn() {
+  if (state.busy) {
+    await api("POST", "/chat/cancel").catch(() => {});
+    state.aborter?.abort();
+    await state.chatPromise?.catch(() => {});
+  }
+}
+$("send").onclick = async () => {
+  const text = $("input").value.trim();
+  if (!text || state.busy) return;
+  $("input").value = "";
+  stopSpeech();
+  const voice = $("asVoice").checked;
+  const started = performance.now();
+  const done = await sendTurn(text, voice);
+  if (!done?.content || !(voice || $("readAloud").checked) || state.phase !== "idle") return;
+  setPhase("speaking");
+  if (voice) {
+    turnTiming.clear();
+    await speak(done.content, { localOnly: voiceLocal(), conversation: true, prepared: done.voice_audio, startedAt: started, report: true });
+  } else await speak(done.content);
+  if (state.phase === "speaking") setPhase("idle");
+};
+$("input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); $("send").click(); }
+});
+$("stop").onclick = () => interruptTurn(false);
+
+/* ---------- speech playback (mirrors backend speech_chunks) ---------- */
+function speechChunks(text, shortOpening = false) {
+  const clean = text.replace(/^[ \t]*[0-9٠-٩]+[.)][ \t]+/gm, "").replace(/\[D\d+\]|[`#*_]/g, "").trim();
+  const sentences = clean.match(/[\s\S]+?(?:[.!?؟](?=\s|$)|\n+|$)/g) || [clean];
+  const result = [];
+  const openingLimit = shortOpening ? 56 : 80;
+  const pauseStart = shortOpening ? 24 : 32;
+  for (let piece of sentences) {
+    while (piece.length) {
+      const limit = result.length ? 120 : openingLimit;
+      const pause = result.length ? null : /[,،;؛](?=\s)/.exec(piece.slice(pauseStart, limit));
+      if (piece.length <= limit && !pause) { result.push(piece); break; }
+      const whitespace = piece.slice(0, limit).search(/\s+\S*$/);
+      const cut = pause ? pauseStart + pause.index + 1 : whitespace >= 0 ? whitespace + 1 : limit;
+      result.push(piece.slice(0, cut));
+      piece = piece.slice(cut);
+    }
+  }
+  return result.filter((p) => p.trim());
+}
+function voiceLocal() { return (state.cfg?.assistant.voice_mode || "offline") !== "online"; }
+function stopSpeech() {
+  state.gen++;
+  const generation = state.gen;
+  state.speechBarrier = api("POST", "/speech/cancel", { generation }).catch(() => {});
+  if (state.audio) { state.audio.pause(); state.audio.src = ""; state.audio = null; }
+  $("stop").disabled = !state.busy;
+}
+async function speak(text, opts = {}) {
+  const { localOnly = false, conversation = false, prepared = null, startedAt = performance.now(), report = false } = opts;
+  stopSpeech();
+  const generation = state.gen;
+  const timing = { firstAudio: null, finish: null, gap: 0, clips: 0, prepared: false };
+  let previousEnd = null;
+  try {
+    await state.speechBarrier;
+    if (generation !== state.gen) return timing;
+    const language = state.cfg.language;
+    const voice = state.cfg.speech.tts;
+    const shortOpening = localOnly && language === "ar" && voice.provider === "chatterbox" && voice.voice === "egyptian";
+    const chunks = speechChunks(text, shortOpening);
+    const whole = chunks.join("");
+    const pieces = shortOpening && /Mac/.test(navigator.platform) && whole && whole.length <= 6000 ? [whole] : chunks;
+    if (!pieces.length) throw new Error("This reply has no text to read aloud.");
+    const synth = (t) => api("POST", "/speech/synthesize", { text: t, language, generation, local_only: localOnly, voice_conversation: conversation });
+    timing.prepared = !!(conversation && prepared && prepared.text === pieces[0].trim() && prepared.language === language);
+    let next = timing.prepared ? Promise.resolve(prepared) : synth(pieces[0]);
+    for (let i = 0; i < pieces.length; i++) {
+      const result = await next;
+      if (generation !== state.gen) return timing;
+      next = i + 1 < pieces.length ? synth(pieces[i + 1]) : null;
+      next?.catch(() => {});
+      if (result.warnings?.length) notify(result.warnings.join(" "));
+      const player = new Audio("data:audio/wav;base64," + result.audio);
+      player.volume = Math.max(0, Math.min(1, voice.volume ?? 1));
+      state.audio = player;
+      $("stop").disabled = false;
+      await new Promise((resolve, reject) => {
+        player.onplaying = () => {
+          const now = performance.now();
+          if (timing.firstAudio === null) timing.firstAudio = (now - startedAt) / 1000;
+          if (previousEnd !== null) timing.gap = Math.max(timing.gap, (now - previousEnd) / 1000);
+        };
+        player.onended = () => { previousEnd = performance.now(); timing.clips++; resolve(); };
+        player.onerror = () => reject(new Error("Audio playback failed."));
+        player.onemptied = player.onabort = () => resolve();
+        player.play().catch(reject);
+      });
+      if (generation !== state.gen) return timing;
+    }
+    timing.finish = (performance.now() - startedAt) / 1000;
+  } catch (e) {
+    if (generation === state.gen) notify(e.message);
+  } finally {
+    if (generation === state.gen) { state.audio = null; $("stop").disabled = !state.busy; }
+    if (report) showPlaybackTiming(timing);
+  }
+  return timing;
+}
+$("ttsSpeak").onclick = async () => {
+  const text = $("ttsText").value.trim() || $("ttsText").placeholder;
+  const started = performance.now();
+  setPhase("speaking");
+  const t = await speak(text, { startedAt: started });
+  if (state.phase === "speaking") setPhase("idle");
+  setTiming([["Speech only: first audio", sec(t.firstAudio)], ["All audio finished", sec(t.finish)], ["Clips", String(t.clips)], ["Largest gap between clips", sec(t.gap)]]);
+};
+
+/* ---------- timing table ---------- */
+const turnTiming = new Map();
+function sec(v) { return typeof v === "number" ? v.toFixed(2) + " s" : "—"; }
+function setTiming(rows) {
+  $("timing").replaceChildren(...rows.map(([k, v]) => {
+    const tr = document.createElement("tr");
+    const a = document.createElement("td"); a.textContent = k;
+    const b = document.createElement("td"); b.textContent = v;
+    tr.append(a, b); return tr;
+  }));
+}
+function renderTurnTiming() { setTiming([...turnTiming.entries()]); }
+function showPlaybackTiming(t) {
+  turnTiming.set("First clip pre-generated by server", t.prepared ? "yes" : "no");
+  turnTiming.set("First audio (after transcript)", sec(t.firstAudio));
+  turnTiming.set("All audio finished", sec(t.finish));
+  turnTiming.set("Largest gap between clips", sec(t.gap));
+  renderTurnTiming();
+}
+
+/* ---------- microphone + voice turns ---------- */
+const TAP = "class Tap extends AudioWorkletProcessor{process(i){const c=i[0]&&i[0][0];if(c)this.port.postMessage(c.slice(0));return true}}registerProcessor('ems-tap',Tap);";
+const SPEECH_RMS = 0.012, MAX_SECONDS = 110, SILENT_GIVE_UP = 15000;
+function setPhase(phase, detail) {
+  state.phase = phase;
+  const labels = { idle: "Idle", listening: "Listening… speak now", recognizing: "Recognizing speech (Whisper)…", thinking: "Writing the answer…", speaking: "Speaking (Chatterbox)…", preparing: "Preparing voice models…" };
+  $("phase").textContent = detail || labels[phase] || phase;
+  const mic = $("mic");
+  mic.classList.toggle("listening", phase === "listening");
+  mic.classList.toggle("busy", ["recognizing", "thinking", "speaking", "preparing"].includes(phase));
+  mic.innerHTML = phase === "listening" ? "Done<br>talking" : phase === "idle" ? "Start<br>talking" : "Interrupt";
+  mic.setAttribute("aria-label", phase === "listening" ? "Finish speaking" : phase === "idle" ? "Start listening" : "Interrupt the reply");
+  if (phase !== "listening") mic.style.setProperty("--lvl", 0);
+}
+async function openMic() {
+  if (state.mic) return;
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
+  const ctx = new AudioContext();
+  const url = URL.createObjectURL(new Blob([TAP], { type: "application/javascript" }));
+  try { await ctx.audioWorklet.addModule(url); } finally { URL.revokeObjectURL(url); }
+  const source = ctx.createMediaStreamSource(stream);
+  const node = new AudioWorkletNode(ctx, "ems-tap");
+  const mute = ctx.createGain(); mute.gain.value = 0;
+  source.connect(node); node.connect(mute); mute.connect(ctx.destination);
+  node.port.onmessage = (e) => onSamples(e.data);
+  state.mic = { stream, ctx, node };
+}
+function closeMic() {
+  if (!state.mic) return;
+  state.mic.node.port.onmessage = null;
+  state.mic.stream.getTracks().forEach((t) => t.stop());
+  state.mic.ctx.close().catch(() => {});
+  state.mic = null;
+}
+function onSamples(samples) {
+  if (!state.recording) return;
+  state.chunks.push(samples);
+  let sum = 0;
+  for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+  const rms = Math.sqrt(sum / samples.length);
+  $("mic").style.setProperty("--lvl", Math.min(1, rms * 12).toFixed(2));
+  const now = performance.now();
+  if (rms > SPEECH_RMS) { state.heard = true; state.lastVoice = now; }
+  const pause = Math.max(700, state.cfg?.assistant.voice_pause_ms || 500) + 400;
+  if ($("autoStop").checked && state.heard && now - state.lastVoice > pause) finishRecording();
+  else if ((now - state.recStart) / 1000 > MAX_SECONDS) finishRecording();
+  else if (!state.heard && now - state.recStart > SILENT_GIVE_UP) { state.recording = false; closeMic(); setPhase("idle", "No speech heard. Press Start talking to try again."); state.conversation = false; }
+}
+async function startListening() {
+  notify("");
+  try {
+    await openMic();
+    if (state.mic.ctx.state === "suspended") await state.mic.ctx.resume();
+  } catch (e) {
+    notify("Microphone unavailable: " + e.message);
+    state.conversation = false;
+    setPhase("idle");
+    return;
+  }
+  state.chunks = []; state.heard = false; state.recStart = state.lastVoice = performance.now();
+  state.recording = true;
+  setPhase("listening");
+}
+function pcmWave(samples) {
+  const data = new ArrayBuffer(44 + samples.length * 2), view = new DataView(data);
+  const word = (o, t) => [...t].forEach((c, i) => view.setUint8(o + i, c.charCodeAt(0)));
+  word(0, "RIFF"); view.setUint32(4, data.byteLength - 8, true); word(8, "WAVE"); word(12, "fmt ");
+  view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+  view.setUint32(24, 16000, true); view.setUint32(28, 32000, true); view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+  word(36, "data"); view.setUint32(40, samples.length * 2, true);
+  for (let i = 0; i < samples.length; i++) {
+    const x = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(44 + i * 2, Math.round(x * (x < 0 ? 32768 : 32767)), true);
+  }
+  return new Blob([data], { type: "audio/wav" });
+}
+async function toWav16k(chunks, rate) {
+  const length = chunks.reduce((n, c) => n + c.length, 0);
+  const all = new Float32Array(length);
+  let offset = 0;
+  for (const c of chunks) { all.set(c, offset); offset += c.length; }
+  if (rate === 16000) return pcmWave(all);
+  const off = new OfflineAudioContext(1, Math.max(1, Math.ceil(length * 16000 / rate)), 16000);
+  const buffer = off.createBuffer(1, length, rate);
+  buffer.copyToChannel(all, 0);
+  const src = off.createBufferSource();
+  src.buffer = buffer; src.connect(off.destination); src.start();
+  return pcmWave((await off.startRendering()).getChannelData(0));
+}
+async function finishRecording() {
+  if (!state.recording) return;
+  state.recording = false;
+  const turn = ++state.turnId;
+  const chunks = state.chunks, rate = state.mic.ctx.sampleRate, heard = state.heard;
+  const seconds = chunks.reduce((n, c) => n + c.length, 0) / rate;
+  state.chunks = [];
+  if (!$("continuous").checked) closeMic();
+  if (!heard) { setPhase("idle", "No speech heard."); state.conversation = false; return; }
+  turnTiming.clear();
+  turnTiming.set("Recording length", sec(seconds));
+  renderTurnTiming();
+  setPhase("recognizing");
+  try {
+    const wav = await toWav16k(chunks, rate);
+    const language = $("asrLanguage").value || state.cfg.language;
+    const t0 = performance.now();
+    const result = await uploadFile("/speech/transcribe?language=" + language, wav, "voice.wav");
+    if (turn !== state.turnId) return;
+    turnTiming.set("Recognition (Whisper)", sec((performance.now() - t0) / 1000));
+    renderTurnTiming();
+    const text = (result.text || "").trim();
+    $("transcript").textContent = text || (result.warning || "Nothing recognized.");
+    $("transcript").classList.toggle("muted", !text);
+    if (!text) return nextListen(turn);
+    const transcriptReady = performance.now();
+    setPhase("thinking");
+    const done = await sendTurn(text, true);
+    if (turn !== state.turnId) return;
+    if (done?.meta) {
+      turnTiming.set("Answer first token", sec(done.meta.first_token_seconds));
+      turnTiming.set("Answer complete", sec(done.meta.total_seconds));
+      turnTiming.set("Timing fact check", done.meta.voice_fact_check || "passed or not needed");
+      renderTurnTiming();
+    }
+    if (!done) state.conversation = false; // an error or stop ends hands-free listening
+    if (done?.content && $("speakReplies").checked) {
+      setPhase("speaking");
+      await speak(done.content, { localOnly: voiceLocal(), conversation: true, prepared: done.voice_audio, startedAt: transcriptReady, report: true });
+    }
+    if (turn !== state.turnId) return;
+    nextListen(turn);
+  } catch (e) {
+    if (turn !== state.turnId) return;
+    notify(e.message);
+    state.conversation = false;
+    closeMic();
+    setPhase("idle");
+  }
+}
+function nextListen(turn) {
+  if (turn === state.turnId && state.conversation && $("continuous").checked) startListening();
+  else { setPhase("idle"); closeMic(); }
+}
+async function interruptTurn(keepConversation) {
+  state.turnId++;
+  state.recording = false;
+  stopSpeech();
+  await cancelTurn();
+  if (keepConversation && state.conversation) startListening();
+  else { state.conversation = false; closeMic(); setPhase("idle"); }
+}
+$("mic").onclick = () => {
+  if (state.phase === "idle") {
+    if (state.busy) return;
+    state.conversation = true;
+    startListening();
+  } else if (state.phase === "listening") finishRecording();
+  else if (state.phase !== "preparing") interruptTurn(true);
+};
+$("end").onclick = () => interruptTurn(false);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") interruptTurn(false); });
+$("prepare").onclick = async () => {
+  if (state.busy || state.phase !== "idle") return;
+  const button = $("prepare");
+  button.disabled = true;
+  setPhase("preparing");
+  const t0 = performance.now();
+  try {
+    const r = await api("POST", "/voice/prepare", { id: crypto.randomUUID() });
+    turnTiming.clear();
+    turnTiming.set("Voice preparation (" + r.model + (r.local ? ", local" : ", online") + ")", sec((performance.now() - t0) / 1000));
+    renderTurnTiming();
+    setPhase("idle", "Voice is ready. Press Start talking.");
+  } catch (e) {
+    notify(e.message);
+    setPhase("idle");
+  } finally { button.disabled = false; }
+};
+
+/* ---------- documents ---------- */
+let docTimer = null;
+async function refreshDocs() {
+  try {
+    const { documents, extensions } = await api("GET", "/documents");
+    $("docFiles").accept = extensions.join(",");
+    const list = $("docList");
+    list.replaceChildren(...documents.map((d) => {
+      const li = document.createElement("li");
+      const label = d.name + " — " + d.status + (["extracting", "indexing"].includes(d.status) ? " " + d.progress + "%" : "") + " · " + d.chunks + " passages" + (d.enabled ? "" : " · excluded");
+      li.append(document.createTextNode(label + " "));
+      if (["error", "keyword_only", "interrupted"].includes(d.status)) {
+        const r = document.createElement("button"); r.textContent = "Retry"; r.onclick = () => api("POST", "/documents/" + d.id + "/retry").then(refreshDocs).catch((e) => notify(e.message)); li.append(r, " ");
+      }
+      const del = document.createElement("button"); del.textContent = "Remove"; del.className = "danger";
+      del.onclick = () => api("DELETE", "/documents/" + d.id).then(refreshDocs).catch((e) => notify(e.message));
+      li.append(del);
+      if (d.error) { const e = document.createElement("div"); e.className = "small muted"; e.textContent = d.error; li.append(e); }
+      return li;
+    }));
+    if (!documents.length) list.innerHTML = '<li class="muted">No documents yet.</li>';
+    clearTimeout(docTimer);
+    if (documents.some((d) => ["queued", "extracting", "indexing"].includes(d.status))) docTimer = setTimeout(refreshDocs, 2000);
+  } catch {}
+}
+$("docUpload").onclick = async () => {
+  const files = [...$("docFiles").files];
+  if (!files.length) return;
+  $("docHint").textContent = "Uploading…";
+  for (const f of files) {
+    try {
+      const r = await uploadFile("/documents", f, f.name);
+      $("docHint").textContent = f.name + (r.created ? " added." : " is already in the library.");
+    } catch (e) { notify(f.name + ": " + e.message); }
+  }
+  $("docFiles").value = "";
+  refreshDocs();
+};
+
+/* ---------- setup + keys ---------- */
+let setupTimer = null;
+async function refreshSetup() {
+  clearTimeout(setupTimer);
+  try {
+    const s = await api("GET", "/setup/status");
+    const job = s.job, dl = s.download || {};
+    const parts = ["Engine " + (s.engine_ready ? "running" : "not running"), "installed models: " + (s.installed_models.join(", ") || "none")];
+    if (job.running || job.stage !== "idle") parts.push("setup " + (job.component || "") + ": " + job.stage + (job.message ? " — " + job.message : ""));
+    if (dl.running) parts.push("downloading " + (dl.model || "") + (dl.total ? " " + Math.floor(100 * dl.completed / dl.total) + "%" : "") + " (" + dl.status + ")");
+    $("setupState").textContent = parts.join(" · ");
+    if (job.running || dl.running) setupTimer = setTimeout(refreshSetup, 2000);
+    else if (job.stage === "ready") refreshStatus(false);
+  } catch (e) { $("setupState").textContent = e.message; }
+}
+async function setupAction(work) {
+  notify("");
+  try { await work(); } catch (e) { notify(e.message); }
+  refreshSetup();
+}
+$("setupPanel").addEventListener("toggle", (e) => { if (e.target.open) refreshSetup(); });
+$("saveKey").onclick = () => setupAction(async () => {
+  const key = $("apiKey").value.trim();
+  if (!key) throw new Error("Paste a key first.");
+  await api("POST", "/credentials", { provider: state.cfg.models.online.provider, key });
+  $("apiKey").value = "";
+  await refreshStatus(false);
+});
+for (const mode of ["online", "offline"]) {
+  $(mode === "online" ? "testOnline" : "testOffline").onclick = () => setupAction(async () => {
+    const r = await api("POST", "/providers/test", { mode });
+    $("setupState").textContent = "Connection test passed: " + r.model + " (" + r.mode + ")";
+  });
+}
+for (const [id, component, size] of [["installAssistant", "assistant", "about 25 GB"], ["installVoice", "voice", "several GB"]]) {
+  $(id).onclick = () => setupAction(async () => {
+    if (!confirm("Download and install the " + component + " components (" + size + ")? Completed downloads are reused.")) return;
+    await api("POST", "/setup/install", { component, accepted_download: true });
+  });
+}
+$("repair").onclick = () => setupAction(() => api("POST", "/setup/repair"));
+$("cancelSetup").onclick = () => setupAction(() => api("POST", "/setup/cancel"));
+
+/* ---------- start ---------- */
+$("tokenSave").onclick = async () => {
+  state.token = $("tokenInput").value.trim();
+  try { sessionStorage.setItem("ems-token", state.token); } catch {}
+  if (await refreshStatus(false)) { refreshChats(); refreshDocs(); }
+};
+(async () => {
+  loadToken();
+  setPhase("idle");
+  if (!state.token) { showToken(true); $("chips").replaceChildren(chip("No session token", "bad")); return; }
+  if (await refreshStatus(false)) { refreshChats(); refreshDocs(); }
+})();
+</script>
+</body>
+</html>

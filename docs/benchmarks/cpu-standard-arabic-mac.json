@@ -1,0 +1,162 @@
+{
+  "machine": "arm64",
+  "torch": "2.6.0",
+  "text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات. احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية. اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+  "cloud_requests": 0,
+  "physical_microphone": false,
+  "playback": "simulated one-ahead",
+  "excludes": [
+    "recognition",
+    "answer generation",
+    "microphone endpointing",
+    "speaker startup"
+  ],
+  "runs": [
+    {
+      "variant": "original",
+      "repeat": 1,
+      "chunks": [
+        {
+          "text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات.",
+          "synthesis_seconds": 9.183,
+          "audio_seconds": 4.32,
+          "play_start_seconds": 9.183,
+          "gap_seconds": 0,
+          "sha256": "08387755e356f05e092859ef3be341f0b88e442a29e7b0c06842c05330774d76",
+          "audio": "1-original-1.wav"
+        },
+        {
+          "text": "احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية.",
+          "synthesis_seconds": 10.766,
+          "audio_seconds": 5.16,
+          "play_start_seconds": 19.949,
+          "gap_seconds": 6.446,
+          "sha256": "2e3fc5fa532ee1064edd81a6b83f769f58d157a39495e4e0a1582e29d00a83b3",
+          "audio": "1-original-2.wav"
+        },
+        {
+          "text": "اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+          "synthesis_seconds": 9.62,
+          "audio_seconds": 4.44,
+          "play_start_seconds": 29.568,
+          "gap_seconds": 4.46,
+          "sha256": "e3134bc69dab836cde8906d45c0ee64cc40caad3904887c02baf69148db381ec",
+          "audio": "1-original-3.wav"
+        }
+      ],
+      "first_audio_seconds": 9.183,
+      "finish_seconds": 34.008,
+      "total_synthesis_seconds": 29.573
+    },
+    {
+      "variant": "optimized",
+      "repeat": 1,
+      "chunks": [
+        {
+          "text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات.",
+          "synthesis_seconds": 4.548,
+          "audio_seconds": 4.32,
+          "play_start_seconds": 4.548,
+          "gap_seconds": 0,
+          "sha256": "08387755e356f05e092859ef3be341f0b88e442a29e7b0c06842c05330774d76",
+          "audio": "1-optimized-1.wav"
+        },
+        {
+          "text": "احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية.",
+          "synthesis_seconds": 5.195,
+          "audio_seconds": 5.16,
+          "play_start_seconds": 9.743,
+          "gap_seconds": 0.875,
+          "sha256": "2e3fc5fa532ee1064edd81a6b83f769f58d157a39495e4e0a1582e29d00a83b3",
+          "audio": "1-optimized-2.wav"
+        },
+        {
+          "text": "اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+          "synthesis_seconds": 4.604,
+          "audio_seconds": 4.44,
+          "play_start_seconds": 14.903,
+          "gap_seconds": 0,
+          "sha256": "e3134bc69dab836cde8906d45c0ee64cc40caad3904887c02baf69148db381ec",
+          "audio": "1-optimized-3.wav"
+        }
+      ],
+      "first_audio_seconds": 4.548,
+      "finish_seconds": 19.343,
+      "total_synthesis_seconds": 14.348
+    },
+    {
+      "variant": "optimized",
+      "repeat": 2,
+      "chunks": [
+        {
+          "text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات.",
+          "synthesis_seconds": 4.951,
+          "audio_seconds": 4.68,
+          "play_start_seconds": 4.951,
+          "gap_seconds": 0,
+          "sha256": "ae48e4daf72708636ce9f99bca46fc9948860fbaddd038d5f4bbcf7c1452f4e5",
+          "audio": "2-optimized-1.wav"
+        },
+        {
+          "text": "احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية.",
+          "synthesis_seconds": 5.142,
+          "audio_seconds": 5.08,
+          "play_start_seconds": 10.093,
+          "gap_seconds": 0.462,
+          "sha256": "f8904910691e3877ed8173e25dd8d4c15c55696a4e3193277b4ae4cc5561bfdb",
+          "audio": "2-optimized-2.wav"
+        },
+        {
+          "text": "اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+          "synthesis_seconds": 4.354,
+          "audio_seconds": 4.2,
+          "play_start_seconds": 15.173,
+          "gap_seconds": 0,
+          "sha256": "623655d6fcc746c1418fa7962854f5117d45a8a7eefcb7c20f124b3e1d0effbf",
+          "audio": "2-optimized-3.wav"
+        }
+      ],
+      "first_audio_seconds": 4.951,
+      "finish_seconds": 19.373,
+      "total_synthesis_seconds": 14.449
+    },
+    {
+      "variant": "original",
+      "repeat": 2,
+      "chunks": [
+        {
+          "text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات.",
+          "synthesis_seconds": 9.868,
+          "audio_seconds": 4.68,
+          "play_start_seconds": 9.868,
+          "gap_seconds": 0,
+          "sha256": "ae48e4daf72708636ce9f99bca46fc9948860fbaddd038d5f4bbcf7c1452f4e5",
+          "audio": "2-original-1.wav"
+        },
+        {
+          "text": "احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية.",
+          "synthesis_seconds": 10.738,
+          "audio_seconds": 5.08,
+          "play_start_seconds": 20.605,
+          "gap_seconds": 6.058,
+          "sha256": "f8904910691e3877ed8173e25dd8d4c15c55696a4e3193277b4ae4cc5561bfdb",
+          "audio": "2-original-2.wav"
+        },
+        {
+          "text": "اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+          "synthesis_seconds": 8.962,
+          "audio_seconds": 4.2,
+          "play_start_seconds": 29.567,
+          "gap_seconds": 3.882,
+          "sha256": "623655d6fcc746c1418fa7962854f5117d45a8a7eefcb7c20f124b3e1d0effbf",
+          "audio": "2-original-3.wav"
+        }
+      ],
+      "first_audio_seconds": 9.868,
+      "finish_seconds": 33.767,
+      "total_synthesis_seconds": 29.569
+    }
+  ],
+  "cold_prepare_seconds": 9.697,
+  "all_paired_audio_identical": true
+}

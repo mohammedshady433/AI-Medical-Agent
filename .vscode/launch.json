@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "EMS: Test console (AI core + browser page)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/test_console.py",
+      "args": ["--data-dir", "${workspaceFolder}/.dev-data"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "justMyCode": true,
+      "osx": {
+        "python": "${workspaceFolder}/.venv/bin/python"
+      }
+    },
+    {
+      "name": "EMS: Debug backend only (isolated development data)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/launcher.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "env": {
+        "EMS_DATA_DIR": "${workspaceFolder}/.dev-data",
+        "EMS_SESSION_TOKEN": "local-debug-only-do-not-use-in-production",
+        "EMS_PORT": "8765",
+        "PYTHONUTF8": "1"
+      },
+      "justMyCode": true,
+      "osx": {
+        "python": "${workspaceFolder}/.venv/bin/python"
+      }
+    }
+  ]
+}

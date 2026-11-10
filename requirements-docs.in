@@ -1,0 +1,2 @@
+# Optional PDF authoring environment; not an application/runtime dependency.
+reportlab==4.4.9

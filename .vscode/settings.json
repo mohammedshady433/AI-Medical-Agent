@@ -1,0 +1,22 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "tests",
+    "--basetemp=build/vscode-tests"
+  ],
+  "python.analysis.extraPaths": [
+    "./backend"
+  ],
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".runtime": true
+  },
+  "search.exclude": {
+    "build": true,
+    ".venv": true,
+    "document-runtime": true
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

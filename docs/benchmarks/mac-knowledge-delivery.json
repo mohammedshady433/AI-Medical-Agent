@@ -1,0 +1,144 @@
+{
+  "version": "1.4.0",
+  "app_commit": "a8e1f9c19c5047b2f155d8053193c5bf2327e4f4",
+  "date": "2026-11-06",
+  "scope": "Public fixtures on the user Mac. Acoustic speaker-to-microphone input is synthetic speech, not a human pronunciation panel.",
+  "transfer": {
+    "kind": "packaged native knowledge transfer",
+    "private_data_used": false,
+    "export_saved": true,
+    "imported_files": 1,
+    "duplicates_kept": 1,
+    "instructions_disabled_until_review": true,
+    "preview_verified": true,
+    "ok": true
+  },
+  "installation": {
+    "database_schema": 2,
+    "record_counts_preserved": true,
+    "voice_settings_preserved": true,
+    "voice_model_preserved": true,
+    "offline_model_preserved": true,
+    "installed_version": "1.4.0",
+    "previous_app_preserved": true,
+    "settings_backup_saved": true
+  },
+  "secure_storage": {
+    "private_clipboard_read": false,
+    "result": {
+      "encrypted": true,
+      "items": 1
+    },
+    "operation_seconds": 0.011,
+    "app_responsive": true,
+    "encrypted_file_exists": true,
+    "safe": true
+  },
+  "fixed_full_reply": {
+    "start": 22322.20000000298,
+    "clips": [
+      {
+        "started": 27135.90000000596,
+        "duration": 4.44,
+        "ended": 31691.29999999702
+      },
+      {
+        "started": 32162.40000000596,
+        "duration": 5,
+        "ended": 37238.40000000596
+      },
+      {
+        "started": 37245.29999999702,
+        "duration": 4.44,
+        "ended": 41739.90000000596
+      }
+    ],
+    "errors": [],
+    "first_audio_seconds": 4.813700000002981,
+    "finish_seconds": 19.41770000000298,
+    "longest_gap_seconds": 0.4711000000089407,
+    "expected_text": "قارن الراتب بعد خصم المصاريف، ثم راجع التأمين والإجازات. احسب وقت المواصلات وتكلفتها، واسأل عن فرص التعلم والترقية. اختر العرض الذي يناسب أولوياتك، وليس الراتب وحده.",
+    "physical_microphone": false,
+    "answer_generation_included": false,
+    "real_playback": true,
+    "app": "EMS",
+    "selected_model": "gpt-oss:20b",
+    "voice": "builtin",
+    "measurement_commit": "82793e6; speech playback path unchanged by later clipboard and task-grounding changes"
+  },
+  "acoustic_conversation": {
+    "ok": true,
+    "physical_microphone": true,
+    "synthetic_capture_stream": false,
+    "synthetic_spoken_fixture": true,
+    "ready_after_microphone": true,
+    "all_tracks_ended": true,
+    "tracks": [
+      {
+        "label": "Default - MacBook Pro Microphone (Built-in)",
+        "sample_rate": 48000
+      }
+    ],
+    "selected_model": "gpt-oss:20b",
+    "voice": "builtin",
+    "playback": [
+      {
+        "first_audio_ms": 3311,
+        "finish_ms": 5202.4000000059605,
+        "largest_gap_ms": 0,
+        "clips": 1,
+        "completed": true,
+        "starts_at": "transcript_ready",
+        "at": 28773.40000000596
+      }
+    ],
+    "input_fixture_end_to_first_audio_seconds": 3.0445,
+    "input_fixture_end_to_finish_seconds": 4.9357000000029805,
+    "conversation": [
+      {
+        "id": 1,
+        "chat_id": "23358b80d31f44c49d3481a2baeed86e",
+        "role": "user",
+        "content": "ممكن تساعدني أرتب الشغلي النهاردة؟ رد بجملة قصيرة",
+        "meta": {
+          "document_context": false
+        },
+        "created": 1793920375.03925
+      },
+      {
+        "id": 2,
+        "chat_id": "23358b80d31f44c49d3481a2baeed86e",
+        "role": "assistant",
+        "content": "ما هي أهم مهامك اليوم؟",
+        "meta": {
+          "mode": "offline",
+          "model": "gpt-oss:20b",
+          "sources": [],
+          "document_context": false,
+          "first_token_seconds": 0.4766911250044359,
+          "total_seconds": 0.6288714580005035
+        },
+        "created": 1793920375.665855
+      }
+    ]
+  },
+  "native_ci": {
+    "run": 42127580806,
+    "url": "https://github.com/Inegm03/EMS-AI-Assistant/actions/runs/42127580806",
+    "source": "a8e1f9c19c5047b2f155d8053193c5bf2327e4f4",
+    "macos": {
+      "backend_passed": 266,
+      "backend_skipped": 5,
+      "frontend_passed": 20,
+      "desktop_helpers_passed": 14,
+      "packaged_passed": 3
+    },
+    "windows": {
+      "backend_passed": 270,
+      "backend_skipped": 1,
+      "frontend_passed": 20,
+      "desktop_helpers_passed": 14,
+      "packaged_passed": 3
+    }
+  }
+}

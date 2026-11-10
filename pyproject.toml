@@ -1,0 +1,15 @@
+[project]
+name = "ems-ai-assistant"
+version = "1.4.2"
+requires-python = ">=3.12,<3.13"
+description = "EMS Windows and macOS desktop assistant: explicit online and offline inference"
+
+[tool.pytest.ini_options]
+pythonpath = ["backend"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 110

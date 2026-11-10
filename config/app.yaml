@@ -1,0 +1,11 @@
+schema_version: 1
+version: 1.4.2
+name: EMS AI Assistant
+default_mode: online
+language: ar
+max_history_messages: 16
+max_history_chars: 18000
+max_agent_steps: 4
+privacy:
+  cloud_document_context: false
+  web_search: false

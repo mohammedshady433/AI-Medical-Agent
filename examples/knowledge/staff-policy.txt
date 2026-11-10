@@ -1,0 +1,9 @@
+Example company policy - invented demonstration data
+
+Staff development
+Each employee has a training allowance of 8000 EGP per calendar year. The manager must approve the course before booking.
+
+Remote work
+Employees may request two remote work days each week. The manager confirms the days in advance.
+
+This example does not state a parental leave entitlement. Do not infer one from the training or remote-work rules.

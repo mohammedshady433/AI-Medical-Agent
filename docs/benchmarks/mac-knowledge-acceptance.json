@@ -1,0 +1,97 @@
+{
+  "model": "gpt-oss:20b",
+  "scope": "Four public-fixture cases; not a general accuracy score. No speech synthesis included.",
+  "results": [
+    {
+      "case": "product",
+      "question": "According to our product library, what is the Cedar Desk price and warranty?",
+      "answer": "The Cedar Desk is priced at **7250 EGP** and comes with a **24‑month warranty**[D1].",
+      "seconds": 2.687,
+      "automated_check_passed": true,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [
+          {
+            "reference": "[D1]",
+            "document_id": "e92f1cc36f8248598092a334ce6fb525",
+            "name": "products.csv",
+            "location": "صف 2",
+            "text": "product_code: EMS-DEMO-01\nproduct_name: Cedar Desk\nprice_egp: 7250\nwarranty_months: 24",
+            "owner_instructions": "Use this as evidence for company policy or product questions. Keep units and cite the source."
+          }
+        ],
+        "document_context": true,
+        "first_token_seconds": 2.1622103749978123,
+        "total_seconds": 2.680833165999502
+      },
+      "errors": []
+    },
+    {
+      "case": "arabic_policy",
+      "question": "وفقاً لسياسة الشركة في الملفات، ما بدل التدريب السنوي ومن يوافق على الدورة؟",
+      "answer": "التدريب السنوي في سياسة الشركة هو بدل تدريب بقيمة 8000 EGP لكل موظف في السنة الميلادية. ويجب أن يوافق المدير على الدورة قبل حجزها. [D4]",
+      "seconds": 3.267,
+      "automated_check_passed": true,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [
+          {
+            "reference": "[D4]",
+            "document_id": "6570975c54f44982aa4bfb25f323698d",
+            "name": "staff-policy.txt",
+            "location": "فقرة 2",
+            "text": "Staff development\nEach employee has a training allowance of 8000 EGP per calendar year. The manager must approve the course before booking.",
+            "owner_instructions": "Use this as evidence for company policy or product questions. Keep units and cite the source."
+          }
+        ],
+        "document_context": true,
+        "first_token_seconds": 2.445754083004431,
+        "total_seconds": 3.2619174999999814
+      },
+      "errors": []
+    },
+    {
+      "case": "missing",
+      "question": "According to our files, how many days of parental leave do we get? If it isn't stated, say it isn't provided.",
+      "answer": "The staff‑policy file does not specify a parental leave entitlement. It explicitly states that this example does not state a parental leave entitlement. Therefore, the number of days of parental leave is not provided in our files. [D6]",
+      "seconds": 3.074,
+      "automated_check_passed": true,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [
+          {
+            "reference": "[D6]",
+            "document_id": "6570975c54f44982aa4bfb25f323698d",
+            "name": "staff-policy.txt",
+            "location": "فقرة 4",
+            "text": "This example does not state a parental leave entitlement. Do not infer one from the training or remote-work rules.",
+            "owner_instructions": "Use this as evidence for company policy or product questions. Keep units and cite the source."
+          }
+        ],
+        "document_context": true,
+        "first_token_seconds": 2.1877880829997594,
+        "total_seconds": 3.067416082994896
+      },
+      "errors": []
+    },
+    {
+      "case": "memory_after_restart",
+      "question": "What internal demonstration code did I ask you to remember?",
+      "answer": "The internal demonstration code you asked me to remember is **CEDAR-42**.",
+      "seconds": 1.364,
+      "automated_check_passed": true,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": true,
+        "first_token_seconds": 1.04415416700067,
+        "total_seconds": 1.3601164589927066
+      },
+      "errors": []
+    }
+  ]
+}

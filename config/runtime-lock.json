@@ -1,0 +1,58 @@
+{
+  "ollama": {
+    "version": "0.35.0",
+    "url": "https://github.com/ollama/ollama/releases/download/v0.35.0/ollama-windows-amd64.zip",
+    "sha256": "d6f7d3dd4f5d013553a78c1e78b2521fcf41d43dd2863e4596cdc046fe6036db"
+  },
+  "whisper": {
+    "repository": "mobiuslabsgmbh/faster-whisper-large-v3-turbo",
+    "revision": "0a363e9161cbc7ed1431c9597a8ceaf0c4f78fcf"
+  },
+  "kemetone": {
+    "repository": "Rabe3/kemetone",
+    "revision": "9d65fab8cd71bc31a248e53bd18fe94941753aa6"
+  },
+  "chatterbox": {
+    "repository": "ResembleAI/chatterbox",
+    "revision": "5bb1f6ee58e50c3b8d408bc82a6d3740c2db6e18",
+    "variant": "v3",
+    "files": [
+      "t3_mtl23ls_v3.safetensors",
+      "s3gen.pt",
+      "ve.pt",
+      "conds.pt",
+      "grapheme_mtl_merged_expanded_v1.json",
+      "Cangjie5_TC.json",
+      "README.md"
+    ]
+  },
+  "speech_python": "3.12",
+  "node": "22.16.0",
+  "docling": "2.142.1",
+  "tesseract": {
+    "version": "5.5.3",
+    "url": "https://github.com/tesseract-ocr/tesseract/releases/download/5.5.3/tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+    "sha256": "bee9e3434bd94fd65387d9be28cd467a41f61b1275383b55b0f59a1331270ae4"
+  },
+  "ocr_arabic": {
+    "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/ara.traineddata",
+    "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+    "sha256": "e3206d3dc87fd50c24a0fb9f01838615911d25168f4e64415244b67d2bb3e729"
+  },
+  "ocr_english": {
+    "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/eng.traineddata",
+    "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+    "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+  },
+  "python_installer": {
+    "version": "3.12.10",
+    "url": "https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe",
+    "sha256": "67b5635e80ea51072b87941312d00ec8927c4db9ba18938f7ad2d27b328b95fb",
+    "verification": "SHA-256 from the official python.org Sigstore bundle"
+  },
+  "ollama_macos": {
+    "version": "0.35.0",
+    "url": "https://github.com/ollama/ollama/releases/download/v0.35.0/ollama-darwin.tgz",
+    "sha256": "2608dbb0a0f0136a198db9d48b4f74ece55f452314a39452fca35b7cf20c2589"
+  }
+}

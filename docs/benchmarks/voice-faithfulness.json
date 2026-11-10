@@ -1,0 +1,1238 @@
+{
+  "version": "1.4.2",
+  "summary": "The installed Mac package kept the morning meeting, shopping after work and evening dentist appointment. All three audio clips were generated and validated. First audio was available in 4.76 seconds; all audio in 11.99 seconds. The joined recording lasts 9.56 seconds. Equivalent repeated wording reused identical audio in about 6 milliseconds total. This is not a fresh-reply speed guarantee or an observed playback finish time.",
+  "guide_notes": [
+    "GPT-OSS 20B and the Chatterbox Standard Arabic voice, CPU decoder, sampling and playback speed were preserved.",
+    "Local source checks passed: 283 backend tests, 30 frontend tests and 14 desktop helpers. Native CI passed on Mac and Windows, including three packaged desktop tests on each. EMS 1.4.2 was installed and its version verified in the Mac interface.",
+    "Physical playback was not completed: the native player was restricted and opening the local browser test page was declined. Generation timings are measured; finish estimates are calculations only."
+  ],
+  "full_followup": {
+    "test": "source-backend-complete-Arabic-followup",
+    "offline": true,
+    "synthetic_input": true,
+    "physical_microphone": false,
+    "physical_playback": false,
+    "pronunciation_assessed": false,
+    "model": "gpt-oss:20b",
+    "voice": {
+      "provider": "chatterbox",
+      "voice": "builtin",
+      "device": "cpu",
+      "speed": 1.0
+    },
+    "timing_scope": "Audio generation and availability only; no microphone or playback latency.",
+    "version": "1.4.2",
+    "preparation": {
+      "ready": true,
+      "model": "gpt-oss:20b",
+      "local": true
+    },
+    "prepare_seconds": 13.817,
+    "recognition_seconds": 3.104,
+    "transcript": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+    "input_topics": {
+      "meeting": true,
+      "shopping": true,
+      "dentist": true
+    },
+    "initial": {
+      "text": "أريد التأكد من التوقيت الذي ذكرته: «بعد الشهن». هل يمكنك توضيحه؟",
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "voice_fact_check": "clarification",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.4683741250046296,
+        "total_seconds": 5.73313424999651
+      },
+      "seconds_including_preview": 10.129
+    },
+    "followup": {
+      "question": "الاجتماع الساعة تسعة صباحًا، والتسوق بعد الشغل. أعد تلخيص كل أنشطة يومي الثلاثة ومواعيدها في ثلاث جمل قصيرة، مع الحفاظ على موعد طبيب الأسنان مساءً.",
+      "answer": "اجتماعك في الساعة 9 صباحًا. ثم تسوقك للبيت بعد انتهاء عملك. وأخيرًا موعدك مع طبيب الأسنان في الساعة 10 مساءً.",
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.7608835000137333,
+        "total_seconds": 1.52691012500145
+      },
+      "answer_ready_seconds_including_preview": 4.455,
+      "checks": {
+        "meeting": true,
+        "shopping": true,
+        "dentist": true,
+        "morning_nine": true,
+        "evening_ten": true,
+        "gpt_oss_20b": true,
+        "after_work_preserved": true,
+        "no_invented_lunch": true
+      }
+    },
+    "history_kept_complete_requests": true,
+    "clips": [
+      {
+        "file": "reply-1.wav",
+        "audio_seconds": 2.8,
+        "bytes": 134444,
+        "rms": 0.13325,
+        "text": "اجتماعك في الساعة 9 صباحًا.",
+        "reused_preview": true,
+        "additional_generation_seconds": 0.001,
+        "available_seconds": 4.458,
+        "warnings": []
+      },
+      {
+        "file": "reply-2.wav",
+        "audio_seconds": 2.92,
+        "bytes": 140204,
+        "rms": 0.11923,
+        "text": " ثم تسوقك للبيت بعد انتهاء عملك.",
+        "reused_preview": false,
+        "additional_generation_seconds": 3.34,
+        "available_seconds": 7.798,
+        "warnings": []
+      },
+      {
+        "file": "reply-3.wav",
+        "audio_seconds": 4.36,
+        "bytes": 209324,
+        "rms": 0.13026,
+        "text": " وأخيرًا موعدك مع طبيب الأسنان في الساعة 10 مساءً.",
+        "reused_preview": false,
+        "additional_generation_seconds": 4.531,
+        "available_seconds": 12.33,
+        "warnings": []
+      }
+    ],
+    "first_audio_available_seconds": 4.458,
+    "all_audio_available_seconds": 12.331,
+    "whole_reply": {
+      "file": "whole-reply.wav",
+      "audio_seconds": 10.08,
+      "bytes": 483884,
+      "rms": 0.12802
+    },
+    "complete_reply_text_covered": true,
+    "equivalent_spoken_reply": [
+      {
+        "seconds": 0.002,
+        "identical_audio": true
+      },
+      {
+        "seconds": 0.0017,
+        "identical_audio": true
+      },
+      {
+        "seconds": 0.002,
+        "identical_audio": true
+      }
+    ],
+    "pipeline_ok": true,
+    "answer_quality_ok": true,
+    "ok": true,
+    "live_settings_unchanged": true
+  },
+  "model_cases": [
+    {
+      "case": "work",
+      "repeat": 1,
+      "question": "عندي اجتماع الساعة تسعة صباحًا، وبعد الشغل أشتري حاجات للبيت، وعندي موعد مع طبيب الأسنان الساعة عشرة بالليل. لخص الأنشطة الثلاثة ومواعيدها في ثلاث جمل قصيرة.",
+      "answer": "لديك اجتماع الساعة تسعة صباحًا.  \nبعد انتهاء العمل، ستشتري حاجات للبيت.  \nوعند الساعة عشرة بالليل لديك موعد مع طبيب الأسنان.",
+      "seconds": 3.931,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 3.242908875006833,
+        "total_seconds": 3.925886666009319
+      },
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true,
+      "review": "The original check missed the valid equivalent بعد انتهاء العمل; accepted after reviewing the complete answer."
+    },
+    {
+      "case": "lunch",
+      "repeat": 1,
+      "question": "لخص: أشتري حاجات للبيت بعد الغداء.",
+      "answer": "أخطط لشراء حاجات للبيت بعد الغداء.",
+      "seconds": 0.944,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.6934902500070166,
+        "total_seconds": 0.9375328330061166
+      },
+      "checks": [
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "case": "before",
+      "repeat": 1,
+      "question": "لخص: أتمرن قبل الشغل ثم أشتري حاجات للبيت بعد الغداء.",
+      "answer": "أتمرن قبل الشغل، ثم أشتري حاجات للبيت بعد الغداء.",
+      "seconds": 1.185,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.8215839170006802,
+        "total_seconds": 1.1777910419914406
+      },
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "case": "unclear",
+      "repeat": 1,
+      "question": "لخص كلامي: أشتري حاجات للبيت بعد الشهن.",
+      "answer": "أنت تخطط لشراء حاجات للبيت بعد الشهن.",
+      "seconds": 2.823,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "voice_fact_check": "repaired",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.44484441699751187,
+        "total_seconds": 2.817887500001234
+      },
+      "checks": [
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "case": "work",
+      "repeat": 2,
+      "question": "عندي اجتماع الساعة تسعة صباحًا، وبعد الشغل أشتري حاجات للبيت، وعندي موعد مع طبيب الأسنان الساعة عشرة بالليل. لخص الأنشطة الثلاثة ومواعيدها في ثلاث جمل قصيرة.",
+      "answer": "لديك اجتماع الساعة تسعة صباحًا.  \nبعد انتهاء العمل، ستشتري حاجات للبيت.  \nوعند الساعة عشرة مساءً، لديك موعد مع طبيب الأسنان.",
+      "seconds": 1.129,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.42064658300660085,
+        "total_seconds": 1.1245090830052504
+      },
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true,
+      "review": "The original check missed the valid equivalent بعد انتهاء العمل; accepted after reviewing the complete answer."
+    },
+    {
+      "case": "lunch",
+      "repeat": 2,
+      "question": "لخص: أشتري حاجات للبيت بعد الغداء.",
+      "answer": "أخطط لشراء حاجات للبيت بعد الغداء.",
+      "seconds": 0.954,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.7084705420129467,
+        "total_seconds": 0.9474170840112492
+      },
+      "checks": [
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "case": "before",
+      "repeat": 2,
+      "question": "لخص: أتمرن قبل الشغل ثم أشتري حاجات للبيت بعد الغداء.",
+      "answer": "أتمرن قبل الشغل، ثم أشتري حاجات للبيت بعد الغداء.",
+      "seconds": 0.775,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.41886658300063573,
+        "total_seconds": 0.7701192500098841
+      },
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "case": "unclear",
+      "repeat": 2,
+      "question": "لخص كلامي: أشتري حاجات للبيت بعد الشهن.",
+      "answer": "أنت تخطط لشراء حاجات للبيت بعد الشهن.",
+      "seconds": 3.214,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "voice_fact_check": "repaired",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 1.0932834170089336,
+        "total_seconds": 3.208024417006527
+      },
+      "checks": [
+        true,
+        true
+      ],
+      "ok": true
+    }
+  ],
+  "correction_cases": [
+    {
+      "answer": "اجتماعك في الساعة 9 صباحًا. بعد انتهاء عملك ستذهب للتسوق. موعدك مع طبيب الأسنان في الساعة 10 مساءً.",
+      "seconds": 1.243,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.6077593749942025,
+        "total_seconds": 1.2398373750038445
+      },
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "answer": "اجتماعك في الساعة 9 صباحاً، ثم تسوقك للبيت بعد انتهاء عملك، وأخيراً موعدك مع طبيب الأسنان في الساعة 10 مساءً.",
+      "seconds": 1.366,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.5816068749991246,
+        "total_seconds": 1.3612782909913221
+      },
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true
+    },
+    {
+      "answer": "الاجتماع يبدأ الساعة 9 صباحًا. بعد انتهاء العمل ستقوم بالتسوق للبيت. موعد طبيب الأسنان محدد في الساعة 10 مساءً.",
+      "seconds": 1.23,
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.5767611670016777,
+        "total_seconds": 1.2269457079964923
+      },
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true
+    }
+  ],
+  "rejected_short_opening": {
+    "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت، وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+    "voice": {
+      "provider": "chatterbox",
+      "voice": "builtin",
+      "device": "cpu",
+      "speed": 1.0
+    },
+    "playback": "not performed: browser permission declined; calculated one-ahead schedule only",
+    "cloud": false,
+    "runs": [
+      {
+        "variant": "before",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.333,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.333,
+            "end_seconds": 10.533,
+            "gap_seconds": 0,
+            "file": "1-before-1.wav"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.106,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.533,
+            "end_seconds": 14.373,
+            "gap_seconds": 0.0,
+            "file": "1-before-2.wav"
+          }
+        ],
+        "first_audio_seconds": 5.333,
+        "finish_seconds": 14.373,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.443
+      },
+      {
+        "variant": "short-opening",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا،",
+            "synthesis_seconds": 3.341,
+            "duration_seconds": 2.92,
+            "play_start_seconds": 3.341,
+            "end_seconds": 6.261,
+            "gap_seconds": 0,
+            "file": "1-short-opening-1.wav"
+          },
+          {
+            "text": " ثم بعد العمل تشتري حاجات للبيت، وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 7.291,
+            "duration_seconds": 7.48,
+            "play_start_seconds": 10.632,
+            "end_seconds": 18.112,
+            "gap_seconds": 4.372,
+            "file": "1-short-opening-2.wav"
+          }
+        ],
+        "first_audio_seconds": 3.341,
+        "finish_seconds": 18.112,
+        "largest_gap_seconds": 4.372,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 10.634
+      },
+      {
+        "variant": "short-opening",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا،",
+            "synthesis_seconds": 3.352,
+            "duration_seconds": 2.92,
+            "play_start_seconds": 3.352,
+            "end_seconds": 6.272,
+            "gap_seconds": 0,
+            "file": "2-short-opening-1.wav"
+          },
+          {
+            "text": " ثم بعد العمل تشتري حاجات للبيت، وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 7.259,
+            "duration_seconds": 7.48,
+            "play_start_seconds": 10.611,
+            "end_seconds": 18.091,
+            "gap_seconds": 4.339,
+            "file": "2-short-opening-2.wav"
+          }
+        ],
+        "first_audio_seconds": 3.352,
+        "finish_seconds": 18.091,
+        "largest_gap_seconds": 4.339,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 10.612
+      },
+      {
+        "variant": "before",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.255,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.255,
+            "end_seconds": 10.455,
+            "gap_seconds": 0,
+            "file": "2-before-1.wav"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.07,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.455,
+            "end_seconds": 14.295,
+            "gap_seconds": 0.0,
+            "file": "2-before-2.wav"
+          }
+        ],
+        "first_audio_seconds": 5.255,
+        "finish_seconds": 14.295,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.326
+      }
+    ],
+    "prepare_seconds": 10.72452533300384
+  },
+  "thread_comparison": {
+    "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت، وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+    "voice": {
+      "provider": "chatterbox",
+      "voice": "builtin",
+      "device": "cpu",
+      "speed": 1.0
+    },
+    "playback": "not performed: browser permission declined; calculated one-ahead schedule only",
+    "cloud": false,
+    "runs": [
+      {
+        "variant": "threads8",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.274,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.274,
+            "end_seconds": 10.474,
+            "gap_seconds": 0,
+            "file": "1-threads8-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.055,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.474,
+            "end_seconds": 14.314,
+            "gap_seconds": 0.0,
+            "file": "1-threads8-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 5.274,
+        "finish_seconds": 14.314,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.331
+      },
+      {
+        "variant": "threads4",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.34,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.34,
+            "end_seconds": 11.54,
+            "gap_seconds": 0,
+            "file": "1-threads4-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.99,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.54,
+            "end_seconds": 15.38,
+            "gap_seconds": 0.0,
+            "file": "1-threads4-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 6.34,
+        "finish_seconds": 15.38,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 11.332
+      },
+      {
+        "variant": "threads2",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 8.165,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 8.165,
+            "end_seconds": 13.365,
+            "gap_seconds": 0,
+            "file": "1-threads2-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 6.404,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 14.569,
+            "end_seconds": 18.409,
+            "gap_seconds": 1.205,
+            "file": "1-threads2-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 8.165,
+        "finish_seconds": 18.409,
+        "largest_gap_seconds": 1.205,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 14.571
+      },
+      {
+        "variant": "threads6",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.579,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.579,
+            "end_seconds": 10.779,
+            "gap_seconds": 0,
+            "file": "1-threads6-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.324,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.779,
+            "end_seconds": 14.619,
+            "gap_seconds": 0.0,
+            "file": "1-threads6-2.wav",
+            "sha256": "0878a9ac28a787742123da2f267d2c5ff58b4ffacdf2a7643357296a35f818bd"
+          }
+        ],
+        "first_audio_seconds": 5.579,
+        "finish_seconds": 14.619,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.906
+      },
+      {
+        "variant": "threads6",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.542,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.542,
+            "end_seconds": 10.742,
+            "gap_seconds": 0,
+            "file": "2-threads6-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.34,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.742,
+            "end_seconds": 14.582,
+            "gap_seconds": 0.0,
+            "file": "2-threads6-2.wav",
+            "sha256": "0878a9ac28a787742123da2f267d2c5ff58b4ffacdf2a7643357296a35f818bd"
+          }
+        ],
+        "first_audio_seconds": 5.542,
+        "finish_seconds": 14.582,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.884
+      },
+      {
+        "variant": "threads2",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 8.224,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 8.224,
+            "end_seconds": 13.424,
+            "gap_seconds": 0,
+            "file": "2-threads2-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 6.447,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 14.671,
+            "end_seconds": 18.511,
+            "gap_seconds": 1.247,
+            "file": "2-threads2-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 8.224,
+        "finish_seconds": 18.511,
+        "largest_gap_seconds": 1.247,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 14.672
+      },
+      {
+        "variant": "threads4",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.265,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.265,
+            "end_seconds": 11.465,
+            "gap_seconds": 0,
+            "file": "2-threads4-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.867,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.465,
+            "end_seconds": 15.305,
+            "gap_seconds": 0.0,
+            "file": "2-threads4-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 6.265,
+        "finish_seconds": 15.305,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 11.134
+      },
+      {
+        "variant": "threads8",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.172,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.172,
+            "end_seconds": 10.372,
+            "gap_seconds": 0,
+            "file": "2-threads8-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.047,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.372,
+            "end_seconds": 14.212,
+            "gap_seconds": 0.0,
+            "file": "2-threads8-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 5.172,
+        "finish_seconds": 14.212,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.221
+      }
+    ],
+    "prepare_seconds": 12.339295083002071
+  },
+  "more_threads": {
+    "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت، وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+    "voice": {
+      "provider": "chatterbox",
+      "voice": "builtin",
+      "device": "cpu",
+      "speed": 1.0
+    },
+    "playback": "not performed: browser permission declined; calculated one-ahead schedule only",
+    "cloud": false,
+    "runs": [
+      {
+        "variant": "threads8",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.323,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.323,
+            "end_seconds": 10.523,
+            "gap_seconds": 0,
+            "file": "1-threads8-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.188,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.523,
+            "end_seconds": 14.363,
+            "gap_seconds": 0.0,
+            "file": "1-threads8-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 5.323,
+        "finish_seconds": 14.363,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.514
+      },
+      {
+        "variant": "threads10",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.488,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.488,
+            "end_seconds": 10.688,
+            "gap_seconds": 0,
+            "file": "1-threads10-1.wav",
+            "sha256": "ef598cf793a7eef1ec6a54e745a54f9bb44d018cf44b78632f3e24b742454dcb"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.311,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.688,
+            "end_seconds": 14.528,
+            "gap_seconds": 0.0,
+            "file": "1-threads10-2.wav",
+            "sha256": "f8574bff2f210b5e4a592aab9b739851eefe2817811bec48c0de71b445ee59ff"
+          }
+        ],
+        "first_audio_seconds": 5.488,
+        "finish_seconds": 14.528,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.801
+      },
+      {
+        "variant": "threads12",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.076,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.076,
+            "end_seconds": 11.276,
+            "gap_seconds": 0,
+            "file": "1-threads12-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.886,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.276,
+            "end_seconds": 15.116,
+            "gap_seconds": 0.0,
+            "file": "1-threads12-2.wav",
+            "sha256": "93f53855528b6ecdb3c352fc89408957ca4bd79fa855c8a7d33fec01ba2da8a9"
+          }
+        ],
+        "first_audio_seconds": 6.076,
+        "finish_seconds": 15.116,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 10.964
+      },
+      {
+        "variant": "threads14",
+        "repeat": 1,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.353,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.353,
+            "end_seconds": 11.553,
+            "gap_seconds": 0,
+            "file": "1-threads14-1.wav",
+            "sha256": "7649052ae3e4d6b38e750edc3a4ec4231831866df0640a4b896db5afeb72ec0e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.989,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.553,
+            "end_seconds": 15.393,
+            "gap_seconds": 0.0,
+            "file": "1-threads14-2.wav",
+            "sha256": "974573a368a2f67df35a5953ee158baeb5684969d3c721bb10b8a8fdbb3af816"
+          }
+        ],
+        "first_audio_seconds": 6.353,
+        "finish_seconds": 15.393,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 11.345
+      },
+      {
+        "variant": "threads14",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.233,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.233,
+            "end_seconds": 11.433,
+            "gap_seconds": 0,
+            "file": "2-threads14-1.wav",
+            "sha256": "7649052ae3e4d6b38e750edc3a4ec4231831866df0640a4b896db5afeb72ec0e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 5.149,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.433,
+            "end_seconds": 15.273,
+            "gap_seconds": 0.0,
+            "file": "2-threads14-2.wav",
+            "sha256": "974573a368a2f67df35a5953ee158baeb5684969d3c721bb10b8a8fdbb3af816"
+          }
+        ],
+        "first_audio_seconds": 6.233,
+        "finish_seconds": 15.273,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 11.383
+      },
+      {
+        "variant": "threads12",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 6.138,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 6.138,
+            "end_seconds": 11.338,
+            "gap_seconds": 0,
+            "file": "2-threads12-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.948,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 11.338,
+            "end_seconds": 15.178,
+            "gap_seconds": 0.0,
+            "file": "2-threads12-2.wav",
+            "sha256": "93f53855528b6ecdb3c352fc89408957ca4bd79fa855c8a7d33fec01ba2da8a9"
+          }
+        ],
+        "first_audio_seconds": 6.138,
+        "finish_seconds": 15.178,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 11.088
+      },
+      {
+        "variant": "threads10",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.406,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.406,
+            "end_seconds": 10.606,
+            "gap_seconds": 0,
+            "file": "2-threads10-1.wav",
+            "sha256": "ef598cf793a7eef1ec6a54e745a54f9bb44d018cf44b78632f3e24b742454dcb"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.166,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.606,
+            "end_seconds": 14.446,
+            "gap_seconds": 0.0,
+            "file": "2-threads10-2.wav",
+            "sha256": "f8574bff2f210b5e4a592aab9b739851eefe2817811bec48c0de71b445ee59ff"
+          }
+        ],
+        "first_audio_seconds": 5.406,
+        "finish_seconds": 14.446,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.574
+      },
+      {
+        "variant": "threads8",
+        "repeat": 2,
+        "clips": [
+          {
+            "text": "الاجتماع يبدأ الساعة 9 صباحًا، ثم بعد العمل تشتري حاجات للبيت،",
+            "synthesis_seconds": 5.169,
+            "duration_seconds": 5.2,
+            "play_start_seconds": 5.169,
+            "end_seconds": 10.369,
+            "gap_seconds": 0,
+            "file": "2-threads8-1.wav",
+            "sha256": "89823efe07a6ac76c5114436f729a0b08cd940fe6d50de10f34332fcb4aeca3e"
+          },
+          {
+            "text": " وأخيرًا موعد مع طبيب الأسنان في الساعة 10 مساءً.",
+            "synthesis_seconds": 4.076,
+            "duration_seconds": 3.84,
+            "play_start_seconds": 10.369,
+            "end_seconds": 14.209,
+            "gap_seconds": 0.0,
+            "file": "2-threads8-2.wav",
+            "sha256": "af74131bed583e0cd528f6ce5c33a367e4040c7388de8c283c0ec1488c5ca621"
+          }
+        ],
+        "first_audio_seconds": 5.169,
+        "finish_seconds": 14.209,
+        "largest_gap_seconds": 0,
+        "complete_audio_generated": true,
+        "playback_completed": false,
+        "total_generation_seconds": 9.248
+      }
+    ],
+    "prepare_seconds": 9.687383083000896
+  },
+  "asr_comparison": [
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 3,
+      "seconds": 3.079
+    },
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 5,
+      "seconds": 3.246
+    },
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 1,
+      "seconds": 2.855
+    },
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 5,
+      "seconds": 3.237
+    },
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 3,
+      "seconds": 3.154
+    },
+    {
+      "text": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+      "language": "ar",
+      "beam": 1,
+      "seconds": 2.884
+    }
+  ],
+  "packaged_full_followup": {
+    "test": "frozen-backend-complete-Arabic-followup",
+    "offline": true,
+    "synthetic_input": true,
+    "physical_microphone": false,
+    "physical_playback": false,
+    "pronunciation_assessed": false,
+    "model": "gpt-oss:20b",
+    "voice": {
+      "provider": "chatterbox",
+      "voice": "builtin",
+      "device": "cpu",
+      "speed": 1.0
+    },
+    "timing_scope": "Audio generation and availability only; no microphone or playback latency.",
+    "version": "1.4.2",
+    "preparation": {
+      "ready": true,
+      "model": "gpt-oss:20b",
+      "local": true
+    },
+    "prepare_seconds": 17.819,
+    "recognition_seconds": 3.088,
+    "transcript": "ساعتني أشتب يومي عندي اجتماع الساعة 9 الصبح وبعد الشهن لازم أشتري حاجات للبيت وعند الساعة 10 بالليل موعد مع دكتور الأسنان لحص الموعد في جملة قصيرة",
+    "input_topics": {
+      "meeting": true,
+      "shopping": true,
+      "dentist": true
+    },
+    "initial": {
+      "text": "أريد التأكد من التوقيت الذي ذكرته: «بعد الشهن». هل يمكنك توضيحه؟",
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "voice_fact_check": "clarification",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.43747012500534765,
+        "total_seconds": 3.946112167002866
+      },
+      "seconds_including_preview": 8.014
+    },
+    "followup": {
+      "question": "الاجتماع الساعة تسعة صباحًا، والتسوق بعد الشغل. أعد تلخيص كل أنشطة يومي الثلاثة ومواعيدها في ثلاث جمل قصيرة، مع الحفاظ على موعد طبيب الأسنان مساءً.",
+      "answer": "اجتماعك يبدأ الساعة 9 صباحاً. بعد انتهاء عملك ستقوم بالتسوق للبيت. موعد طبيب الأسنان لديك في الساعة 10 مساءً.",
+      "meta": {
+        "mode": "offline",
+        "model": "gpt-oss:20b",
+        "sources": [],
+        "document_context": false,
+        "first_token_seconds": 0.7356866670015734,
+        "total_seconds": 1.5268057500070427
+      },
+      "answer_ready_seconds_including_preview": 4.758,
+      "checks": {
+        "meeting": true,
+        "shopping": true,
+        "dentist": true,
+        "morning_nine": true,
+        "evening_ten": true,
+        "gpt_oss_20b": true,
+        "after_work_preserved": true,
+        "no_invented_lunch": true
+      }
+    },
+    "history_kept_complete_requests": true,
+    "clips": [
+      {
+        "file": "reply-1.wav",
+        "audio_seconds": 3.08,
+        "bytes": 147884,
+        "rms": 0.11763,
+        "text": "اجتماعك يبدأ الساعة 9 صباحاً.",
+        "reused_preview": true,
+        "additional_generation_seconds": 0.001,
+        "available_seconds": 4.761,
+        "warnings": []
+      },
+      {
+        "file": "reply-2.wav",
+        "audio_seconds": 3.32,
+        "bytes": 159404,
+        "rms": 0.13773,
+        "text": " بعد انتهاء عملك ستقوم بالتسوق للبيت.",
+        "reused_preview": false,
+        "additional_generation_seconds": 3.669,
+        "available_seconds": 8.43,
+        "warnings": []
+      },
+      {
+        "file": "reply-3.wav",
+        "audio_seconds": 3.16,
+        "bytes": 151724,
+        "rms": 0.12393,
+        "text": " موعد طبيب الأسنان لديك في الساعة 10 مساءً.",
+        "reused_preview": false,
+        "additional_generation_seconds": 3.557,
+        "available_seconds": 11.987,
+        "warnings": []
+      }
+    ],
+    "first_audio_available_seconds": 4.761,
+    "all_audio_available_seconds": 11.988,
+    "whole_reply": {
+      "file": "whole-reply.wav",
+      "audio_seconds": 9.56,
+      "bytes": 458924,
+      "rms": 0.12697
+    },
+    "complete_reply_text_covered": true,
+    "equivalent_spoken_reply": [
+      {
+        "seconds": 0.0023,
+        "identical_audio": true
+      },
+      {
+        "seconds": 0.0018,
+        "identical_audio": true
+      },
+      {
+        "seconds": 0.0018,
+        "identical_audio": true
+      }
+    ],
+    "pipeline_ok": true,
+    "answer_quality_ok": true,
+    "ok": true,
+    "live_settings_unchanged": true
+  },
+  "native_ci": {
+    "url": "https://github.com/Inegm03/EMS-AI-Assistant/actions/runs/42194954448",
+    "source_commit": "eae8faf6f0f7b3d82d047e7b33f8415098467ebb",
+    "macos": {
+      "backend_passed": 287,
+      "backend_skipped": 5,
+      "packaged_e2e_passed": 3
+    },
+    "windows": {
+      "backend_passed": 291,
+      "backend_skipped": 1,
+      "packaged_e2e_passed": 3
+    }
+  }
+}

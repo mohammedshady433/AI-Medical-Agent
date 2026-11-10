@@ -1,0 +1,29 @@
+online:
+  display_name: GPT-OSS 120B
+  id: gpt-oss:120b
+  provider: ollama_cloud
+  context_window: 8192
+  temperature: 0.3
+  reasoning_effort: low
+  max_response_tokens: 1536
+  timeout: 120
+  streaming: true
+  enabled_tools: [search_documents, document_overview, calculator, web_search]
+  hardware: {local_required: false}
+offline:
+  display_name: GPT-OSS 20B
+  id: gpt-oss:20b
+  provider: ollama_local
+  context_window: 8192
+  temperature: 0.3
+  reasoning_effort: low
+  max_response_tokens: 1536
+  timeout: 180
+  streaming: true
+  enabled_tools: [search_documents, document_overview, calculator]
+  hardware: {recommended_ram_gb: 32, recommended_vram_gb: 16, download_gb: 14}
+experimental:
+  display_name: GPT-OSS 120B (experimental local)
+  id: gpt-oss:120b
+  provider: ollama_local
+  hardware: {recommended_ram_gb: 96, recommended_vram_gb: 80, download_gb: 65}

@@ -1,0 +1,9 @@
+asr-warmup.wav is the first 2.5 seconds of the project's public synthetic English
+question fixture, tests/fixtures/voice/voice-question-en.wav. It contains no user
+recording or private information. It was generated with the local Windows voice.
+
+The resident CUDA recognition worker processes it once during Voice preparation
+to initialize inference kernels. The transcript is discarded. It is never added
+to conversation history, used as an ASR prompt, played, or used for voice cloning.
+
+SHA-256: 59a100564e01cc70b6e99c28d5845f14ac5d0276db1940717384a2eae1449226

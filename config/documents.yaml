@@ -1,0 +1,20 @@
+max_file_mb: 100
+max_pages: 2000
+max_extracted_chars: 12000000
+chunk_chars: 1200
+chunk_overlap: 160
+retrieval_limit: 8
+context_chars: 10000
+embedding:
+  model: bge-m3:567m
+  endpoint: http://127.0.0.1:11434
+  batch_size: 16
+  dimensions: 1024
+  device: cpu
+ocr:
+  executable: ''
+  language: ara+eng
+docling:
+  enabled: false
+  python: ''
+  artifacts_path: ''

@@ -1,0 +1,30 @@
+enabled: true
+desktop_actions: true
+voice_activation: false
+wake_phrase: يا إي إم إس
+barge_in: true
+voice_detection_version: 1
+follow_up_seconds: 20
+hotkeys: true
+voice_model: ''
+voice_mode: offline
+voice_low_latency: false
+voice_pause_ms: 500
+workspace: []
+research:
+  enabled: false
+  max_searches: 3
+  max_sources: 5
+  max_model_calls: 3
+  page_chars: 6000
+  output_tokens: 1200
+  planner_model: ''
+  worker_model: ''
+vision:
+  enabled: false
+  model: ''
+mcp_servers: []
+clipboard_history: false
+weather_city: ''
+weather_enabled: false
+first_run_completed: false

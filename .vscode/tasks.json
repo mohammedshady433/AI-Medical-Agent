@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "EMS: Install Dependencies",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/setup.ps1"],
+      "problemMatcher": [],
+      "osx": {"command": "bash", "args": ["${workspaceFolder}/scripts/setup-macos.sh"]},
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "EMS: Start Test Console",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["${workspaceFolder}/scripts/test_console.py", "--data-dir", "${workspaceFolder}/.dev-data"],
+      "problemMatcher": [],
+      "osx": {"command": "${workspaceFolder}/.venv/bin/python"},
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "EMS: Run Tests",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/test.ps1"],
+      "group": {"kind": "test", "isDefault": true},
+      "problemMatcher": [],
+      "osx": {"command": "bash", "args": ["${workspaceFolder}/scripts/test-macos.sh"]},
+      "options": {"cwd": "${workspaceFolder}"}
+    }
+  ]
+}
